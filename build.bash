@@ -1,4 +1,11 @@
 #!/usr/bin/env sh
 
-docker build -t unitree_mujoco_base .
+BASE_IMAGE=unitree_mujoco_base
+IMAGE=unitree_mujoco
+
+docker build -t $BASE_IMAGE .
+
+if [ $(docker images -q "$IMAGE") ]; then
+  docker image rm $IMAGE
+fi
 
